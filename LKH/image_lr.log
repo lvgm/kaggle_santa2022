@@ -22,7 +22,7 @@ KICKS = 1
 # MAX_BREADTH =
 MAX_CANDIDATES = 0 
 MAX_SWAPS = 16512
-MAX_TRIALS = 2
+MAX_TRIALS = 1
 # MERGE_TOUR_FILE =
 MOVE_TYPE = 5
 NONSEQUENTIAL_MOVE_TYPE = 9
@@ -41,7 +41,7 @@ PRECISION = 100
 PROBLEM_FILE = image_lr.tsp
 RECOMBINATION = IPT
 RESTRICTED_SEARCH = YES
-RUNS = 2
+RUNS = 5
 SEED = 1
 STOP_AT_OPTIMUM = YES
 SUBGRADIENT = YES
@@ -53,22 +53,30 @@ SUBSEQUENT_PATCHING = YES
 TOUR_FILE = tour_lr
 TRACE_LEVEL = 1
 
-Lower bound = 18773699.6, Ascent time = 27.64 sec.
+Lower bound = 18773699.6, Ascent time = 26.68 sec.
 Cand.min = 5, Cand.avg = 13.8, Cand.max = 14
-Preprocessing time = 27.67 sec.
-* 1: Cost = 18789560, Time = 212.50 sec. 
-* 2: Cost = 18787785, Time = 414.60 sec. 
+Preprocessing time = 26.70 sec.
+* 1: Cost = 18789560, Time = 210.90 sec. 
 Writing TOUR_FILE: "tour_lr" ... done
-Run 1: Cost = 18787785, Time = 414.61 sec. 
+Run 1: Cost = 18789560, Time = 210.90 sec. 
 
-* 1: Cost = 18788693, Time = 153.78 sec. 
-* 2: Cost = 18788477, Time = 310.43 sec. 
+* 1: Cost = 18788500, Time = 96.31 sec. 
 Writing TOUR_FILE: "tour_lr" ... done
-Run 2: Cost = 18787712, Time = 310.44 sec. 
+Run 2: Cost = 18788434, Time = 96.32 sec. 
 
-Successes/Runs = 0/2
-Cost.min = 18787712, Cost.avg = 18787748.50, Cost.max = 18787785
-Gap.min = 0.0000%, Gap.avg = 0.0002%, Gap.max = 0.0004%
-Trials.min = 2, Trials.avg = 2.0, Trials.max = 2
-Time.min = 310.44 sec., Time.avg = 362.52 sec., Time.max = 414.61 sec.
-Time.total = 752.81 sec.
+* 1: Cost = 18787712, Time = 163.15 sec. 
+Writing TOUR_FILE: "tour_lr" ... done
+Run 3: Cost = 18787711, Time = 163.16 sec. 
+
+* 1: Cost = 18788767, Time = 128.32 sec. 
+Run 4: Cost = 18788767, Time = 128.33 sec. 
+
+* 1: Cost = 18789553, Time = 164.25 sec. 
+Run 5: Cost = 18789553, Time = 164.26 sec. 
+
+Successes/Runs = 0/5
+Cost.min = 18787711, Cost.avg = 18788805.00, Cost.max = 18789560
+Gap.min = 0.0000%, Gap.avg = 0.0058%, Gap.max = 0.0098%
+Trials.min = 1, Trials.avg = 1.0, Trials.max = 1
+Time.min = 96.32 sec., Time.avg = 152.60 sec., Time.max = 210.90 sec.
+Time.total = 789.77 sec.

@@ -22,7 +22,7 @@ KICKS = 1
 # MAX_BREADTH =
 MAX_CANDIDATES = 0 
 MAX_SWAPS = 16511
-MAX_TRIALS = 2
+MAX_TRIALS = 1
 # MERGE_TOUR_FILE =
 MOVE_TYPE = 5
 NONSEQUENTIAL_MOVE_TYPE = 9
@@ -41,7 +41,7 @@ PRECISION = 100
 PROBLEM_FILE = image_ur.tsp
 RECOMBINATION = IPT
 RESTRICTED_SEARCH = YES
-RUNS = 2
+RUNS = 5
 SEED = 1
 STOP_AT_OPTIMUM = YES
 SUBGRADIENT = YES
@@ -53,21 +53,29 @@ SUBSEQUENT_PATCHING = YES
 TOUR_FILE = tour_ur
 TRACE_LEVEL = 1
 
-Lower bound = 18182756.1, Ascent time = 30.23 sec.
+Lower bound = 18182756.1, Ascent time = 28.93 sec.
 Cand.min = 5, Cand.avg = 13.8, Cand.max = 14
-Preprocessing time = 30.25 sec.
-* 1: Cost = 18188917, Time = 115.09 sec. 
+Preprocessing time = 28.95 sec.
+* 1: Cost = 18188917, Time = 115.21 sec. 
 Writing TOUR_FILE: "tour_ur" ... done
-Run 1: Cost = 18188917, Time = 220.27 sec. 
+Run 1: Cost = 18188917, Time = 115.22 sec. 
 
-* 1: Cost = 18189995, Time = 116.25 sec. 
-* 2: Cost = 18189061, Time = 184.55 sec. 
+* 1: Cost = 18189995, Time = 118.17 sec. 
+Run 2: Cost = 18189995, Time = 118.18 sec. 
+
+* 1: Cost = 18188523, Time = 180.06 sec. 
 Writing TOUR_FILE: "tour_ur" ... done
-Run 2: Cost = 18188916, Time = 184.56 sec. 
+Run 3: Cost = 18188522, Time = 180.07 sec. 
 
-Successes/Runs = 0/2
-Cost.min = 18188916, Cost.avg = 18188916.50, Cost.max = 18188917
-Gap.min = 0.0000%, Gap.avg = 0.0000%, Gap.max = 0.0000%
-Trials.min = 2, Trials.avg = 2.0, Trials.max = 2
-Time.min = 184.56 sec., Time.avg = 202.41 sec., Time.max = 220.27 sec.
-Time.total = 435.17 sec.
+* 1: Cost = 18189341, Time = 349.05 sec. 
+Run 4: Cost = 18189341, Time = 349.05 sec. 
+
+* 1: Cost = 18189371, Time = 123.70 sec. 
+Run 5: Cost = 18189371, Time = 123.71 sec. 
+
+Successes/Runs = 0/5
+Cost.min = 18188522, Cost.avg = 18189229.20, Cost.max = 18189995
+Gap.min = 0.0000%, Gap.avg = 0.0039%, Gap.max = 0.0081%
+Trials.min = 1, Trials.avg = 1.0, Trials.max = 1
+Time.min = 115.22 sec., Time.avg = 177.25 sec., Time.max = 349.05 sec.
+Time.total = 915.28 sec.

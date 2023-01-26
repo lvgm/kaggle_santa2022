@@ -31,7 +31,10 @@ def save_arrow(points, fname):
 
 def main():
     points = load_sub('sub_4q.csv')
-    save_arrow(points, 'arrow.csv')
+    save_arrow(points, 'arrow_4q.csv')
+
+    points = load_sub('sub_full.csv')
+    save_arrow(points, 'arrow_full.csv')
 
 if __name__ == '__main__':
     main()

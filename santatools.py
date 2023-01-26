@@ -2,9 +2,118 @@
 
 from functools import *
 import numpy as np
+import pandas as pd
 
 
-def get_order_ary_map(imin, imax, jmin, jmax, blocked, start_ary, end_ary):
+def df_to_image(df):
+    side = int(len(df) ** 0.5)  # assumes a square image
+    return df.set_index(['x', 'y']).to_numpy().reshape(side, side, -1)
+
+
+def get_direction(u, v):
+    """Returns the sign of the angle from u to v."""
+    direction = np.sign(np.cross(u, v))
+    if direction == 0 and np.dot(u, v) < 0:
+        direction = 1
+    return direction
+    
+
+def rotate_link(vector, direction):
+    x, y = vector
+    if direction == 1:  # counter-clockwise 
+        if y >= x and y > -x:
+            x -= 1
+        elif y > x and y <= -x:
+            y -= 1
+        elif y <= x and y < -x:
+            x += 1
+        else:       
+            y += 1      
+    elif direction == -1:  # clockwise
+        if y > x and y >= -x:   
+            x += 1              
+        elif y >= x and y < -x: 
+            y += 1              
+        elif y < x and y <= -x: 
+            x -= 1                  
+        else:                       
+            y -= 1                  
+    return (x, y)
+    
+
+def rotate(config, i, direction):
+    config = config.copy()
+    config[i] = rotate_link(config[i], direction)
+    return config
+    
+
+def get_path_to_configuration(from_config, to_config):
+    path = [from_config]
+    config = from_config.copy()
+    while config != to_config:
+        for i in range(len(config)):
+            config = rotate(config, i, get_direction(config[i], to_config[i]))
+        path.append(config)
+    assert path[-1] == to_config
+    return path
+    
+
+# Functions to compute the cost function
+
+# Cost of moving from one color to another: the sum of the absolute change in color components
+def color_cost(from_position, to_position, image, color_scale=3.0):
+    return np.abs(image[to_position] - image[from_position]).sum() * color_scale
+
+
+# Cost of reconfiguring the robotic arm: the square root of the number of links rotated
+def reconfiguration_cost(from_config, to_config):
+    nlinks = len(from_config)
+    diffs = np.abs(np.asarray(from_config) - np.asarray(to_config)).sum(axis=1)
+    return np.sqrt(diffs.sum())
+
+
+# Total cost of one step: the reconfiguration cost plus the color cost
+def step_cost(from_config, to_config, image):
+    from_position = cartesian_to_array(*get_position(from_config), image.shape)
+    to_position = cartesian_to_array(*get_position(to_config), image.shape)
+    return (
+        reconfiguration_cost(from_config, to_config) +
+        color_cost(from_position, to_position, image)
+    )
+
+
+# Total cost of one step: the reconfiguration cost
+def step_cost_reconfig(from_config, to_config, image):
+    from_position = cartesian_to_array(*get_position(from_config), image.shape)
+    to_position = cartesian_to_array(*get_position(to_config), image.shape)
+    return (
+        reconfiguration_cost(from_config, to_config)
+    )
+
+
+# Compute total cost of path over image
+def total_cost(path, image):
+    return reduce(
+        lambda cost, pair: cost + step_cost(pair[0], pair[1], image),
+        zip(path[:-1], path[1:]),
+        0,
+    )
+
+
+# Compute reconfiguration cost of path
+def total_cost_reconfig(path, image):
+    return reduce(
+        lambda cost, pair: cost + step_cost_reconfig(pair[0], pair[1], image),
+        zip(path[:-1], path[1:]),
+        0,
+    )
+
+
+def ary_to_cartesian(point):
+    return (point[1]-128, 128-point[0])
+
+
+def get_idxary_map_4q_common(imin, imax, jmin, jmax, blocked, start_ary, end_ary):
     idx2ary = dict()
     ary2idx = dict()
     idx = 1
@@ -36,7 +145,7 @@ def get_order_ary_map(imin, imax, jmin, jmax, blocked, start_ary, end_ary):
     return idx2ary, ary2idx
 
 
-def get_idxary_map(quadrant):
+def get_idxary_map_4q(quadrant):
     def blocked_ur(i, j):
         if (i >= 64 and i <= 128) and (j == 128 or j == 129):
             return True
@@ -73,7 +182,7 @@ def get_idxary_map(quadrant):
               }
     }
 
-    return get_order_ary_map(
+    return get_idxary_map_4q_common(
             config[quadrant]['imin'],
             config[quadrant]['imax'],
             config[quadrant]['jmin'],
@@ -82,6 +191,23 @@ def get_idxary_map(quadrant):
             config[quadrant]['start_ary'],
             config[quadrant]['end_ary'],
             )
+
+
+def get_idxary_map_full():
+    ary2idx = dict()
+    for i in range(256+1):
+        for j in range(256+1):
+            idx = i*257 + j + 1
+            ary2idx[(i,j)] = idx
+
+    ary2idx[(0,0)] = ary2idx[(128,128)]
+    ary2idx[(128,128)] = 1
+
+    idx2ary = dict()
+    for k,v in ary2idx.items():
+        idx2ary[v] = k
+
+    return idx2ary, ary2idx
 
 
 def get_position(config):
@@ -136,3 +262,12 @@ def check_path_valid(path):
     assert total == 257*257
 
 
+def save_submission(path, fname):
+    def config_to_string(config):
+        return ';'.join([' '.join(map(str, vector)) for vector in config])
+
+    submission = pd.Series(
+        [config_to_string(config) for config in path],
+        name="configuration",
+    )
+    submission.to_csv(fname, index=False)

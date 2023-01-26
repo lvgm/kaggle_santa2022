@@ -1,0 +1,135 @@
+split_points() to  50521 15529
+pool_size_normal: 50
+pool_size_retry: 1000
+back_cnt: 800
+no near next: 567: (0, 46) => (-1, 46)
+back 566 to 0
+0 #config: 1
+1000 #config: 50
+no near next: 1469: (64, 38) => (65, 38)
+back 800 to 668
+1000 #config: 1000
+2000 #config: 50
+3000 #config: 50
+4000 #config: 50
+5000 #config: 50
+no near next: 5555: (-3, 64) => (-3, 63)
+back 800 to 4754
+5000 #config: 1000
+6000 #config: 50
+7000 #config: 50
+8000 #config: 50
+9000 #config: 50
+10000 #config: 50
+11000 #config: 50
+12000 #config: 50
+13000 #config: 50
+14000 #config: 50
+15000 #config: 50
+16000 #config: 50
+17000 #config: 50
+18000 #config: 50
+19000 #config: 50
+20000 #config: 50
+21000 #config: 50
+22000 #config: 50
+23000 #config: 50
+24000 #config: 50
+25000 #config: 50
+26000 #config: 50
+27000 #config: 50
+28000 #config: 50
+29000 #config: 50
+30000 #config: 50
+no near next: 30679: (127, 126) => (127, 127)
+back 800 to 29878
+30000 #config: 1000
+no near next: 30679: (127, 126) => (127, 127)
+second time: 30679
+get_next_n_move_path(), input configs: 2 output len 3
+no near next: 30933: (-126, 127) => (-127, 127)
+back 252 to 30680
+no near next: 30933: (-126, 127) => (-127, 127)
+second time: 30933
+get_next_n_move_path(), input configs: 2 output len 3
+31000 #config: 50
+32000 #config: 50
+33000 #config: 50
+34000 #config: 50
+35000 #config: 50
+36000 #config: 50
+37000 #config: 50
+38000 #config: 50
+no near next: 38778: (-54, 0) => (-54, -1)
+back 800 to 37977
+38000 #config: 1000
+39000 #config: 50
+no near next: 39663: (-58, 0) => (-58, -1)
+back 800 to 38862
+39000 #config: 1000
+40000 #config: 50
+41000 #config: 50
+42000 #config: 50
+43000 #config: 50
+44000 #config: 50
+45000 #config: 50
+46000 #config: 50
+47000 #config: 50
+48000 #config: 50
+49000 #config: 50
+50000 #config: 50
+get_path_from_backlink(): input len 50523
+get_path_from_backlink(): output len 50523
+pool_size_normal: 50
+pool_size_retry: 1000
+back_cnt: 800
+no near next: 1: (0, 0) => (1, 0)
+back 0 to 0
+0 #config: 1
+no near next: 1: (0, 0) => (1, 0)
+second time: 1
+get_next_n_move_path(), input configs: 1 output len 3
+no near next: 255: (32, 4) => (33, 4)
+back 252 to 2
+1000 #config: 50
+no near next: 1788: (47, 0) => (47, 1)
+back 800 to 987
+1000 #config: 1000
+2000 #config: 50
+3000 #config: 50
+no near next: 3364: (35, -64) => (35, -65)
+back 800 to 2563
+3000 #config: 1000
+4000 #config: 50
+5000 #config: 50
+6000 #config: 50
+7000 #config: 50
+no near next: 7827: (-51, 0) => (-51, 1)
+back 800 to 7026
+8000 #config: 50
+no near next: 8653: (0, 43) => (1, 43)
+back 800 to 7852
+8000 #config: 1000
+9000 #config: 50
+10000 #config: 50
+11000 #config: 50
+12000 #config: 50
+13000 #config: 50
+no near next: 13704: (-127, -126) => (-127, -127)
+back 800 to 12903
+13000 #config: 1000
+14000 #config: 50
+15000 #config: 50
+get_path_from_backlink(): input len 15530
+get_path_from_backlink(): output len 15530
+66053
+-- run remove --
+Current length: 66053
+New length: 66051
+-- run remove --
+Current length: 66051
+New length: 66051
+cost: 74155.419585
+cost_reconfig: 67243.207820, cost_image: 6912.211765
+total visit: 66049
+path len: 66051
